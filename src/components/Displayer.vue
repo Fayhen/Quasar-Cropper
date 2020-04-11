@@ -1,10 +1,18 @@
 <template>
   <div class="flex column justify-center">
+    <q-file
+      outlined
+      clearable
+      v-model="fileName"
+      class="q-mb-md"
+      label="Browse files..."
+      accept=".jpg, image/*"
+      @input="handleFile"
+    />
     <div>
       <div
         class="container cursor-pointer column items-center"
         @mouseover="showOverlay = !showOverlay"
-        @click="renderCropper = !renderCropper"
       >
         <img
           ref="image"
@@ -24,13 +32,14 @@
       </div>
     </div>
     <q-popup-proxy
+      ref="popup"
       anchor="center middle"
       self="center left"
       transition-show="scale"
       transition-hide="scale"
+      v-bind="renderCropper"
     >
       <CropperDialog
-        v-if="renderCropper"
         v-on:destroy="finishCropper"
         :imageSrc="imageSrc"
       />
@@ -46,17 +55,21 @@ export default {
 
   data () {
     return {
-      imageSrc: 'https://upload.wikimedia.org/wikipedia/commons/d/d5/Interior_of_Santi_Giovanni_e_Paolo_%28Venice%29_-_San_Domenico_e_San_Francesco%2C_di_Angelo_Lion.jpg',
+      imageSrc: 'https://upload.wikimedia.org/wikipedia/commons/a/a4/Ada_Lovelace_portrait.jpg',
       showOverlay: false,
-      renderCropper: false
+      fileName: null
     }
   },
 
   methods: {
+    handleFile (file) {
+      this.imageSrc = URL.createObjectURL(file)
+      this.$refs.popup.hide()
+    },
+
     finishCropper (croppedImage) {
-      console.log(croppedImage)
+      // console.log(croppedImage)
       this.imageSrc = croppedImage
-      this.renderCropper = false
     }
   },
 
@@ -69,13 +82,13 @@ export default {
 <style lang="stylus" scoped>
   .container
     position relative
-    width 80vw
+    max-width 80vw
     max-height 50vh
     overflow hidden
   .container img
     display block
     max-width 100%
-    heigth 100%
+    max-height 50vh
   .container .overlay
     position absolute
     display flex
