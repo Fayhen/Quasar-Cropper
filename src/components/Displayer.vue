@@ -1,5 +1,6 @@
 <template>
-  <div class="flex column justify-center">
+  <div class="flex column justify-center text-center text-body1">
+    <p>Upload image</p>
     <q-file
       outlined
       clearable
@@ -9,7 +10,8 @@
       accept=".jpg, image/*"
       @input="handleFile"
     />
-    <div>
+    <p>Click the image to start editing</p>
+    <div id="display-area">
       <div
         class="container cursor-pointer column items-center"
         @mouseover="showOverlay = !showOverlay"
@@ -37,18 +39,20 @@
       self="center left"
       transition-show="scale"
       transition-hide="scale"
-      v-bind="renderCropper"
+      target="#display-area"
     >
       <CropperDialog
         v-on:destroy="finishCropper"
         :imageSrc="imageSrc"
       />
     </q-popup-proxy>
+    <Links />
   </div>
 </template>
 
 <script>
 import CropperDialog from './CropperDialog'
+import Links from './Links'
 
 export default {
   name: 'Displayer',
@@ -64,7 +68,6 @@ export default {
   methods: {
     handleFile (file) {
       this.imageSrc = URL.createObjectURL(file)
-      this.$refs.popup.hide()
     },
 
     finishCropper (croppedImage) {
@@ -74,7 +77,8 @@ export default {
   },
 
   components: {
-    CropperDialog
+    CropperDialog,
+    Links
   }
 }
 </script>
