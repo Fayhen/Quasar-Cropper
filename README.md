@@ -1,6 +1,9 @@
-# Quasar Cropper (quasar-cropper)
+# Quasar Cropper
 
 This is a simple demonstration of an image cropper built with Cropper.js, built inside a Single Page Application built using the Quasar framework.
+
+See it in action:
+![gif](https://media.giphy.com/media/RGRK95nBgOoWnoUrJD/giphy.gif)
 
 ## Install the dependencies
 ```bash
