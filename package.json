@@ -8,6 +8,7 @@
   "author": "Diego Garcia Cordeiro Souza <diego00alfa@gmail.com>",
   "private": true,
   "scripts": {
+    "build": "npx @quasar/cli build",
     "lint": "eslint --ext .js,.vue src",
     "test": "echo \"No test specified\" && exit 0"
   },
