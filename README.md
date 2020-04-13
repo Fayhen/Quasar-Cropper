@@ -2,7 +2,7 @@
 
 This is a simple demonstration of an image cropper built with Cropper.js, built inside a Single Page Application built using the Quasar framework.
 
-See it in action:
+See it in action: https://5e93b3e6396d24fc3cf6807f--brave-jepsen-8fd015.netlify.com/
 
 ![gif](https://media.giphy.com/media/RGRK95nBgOoWnoUrJD/giphy.gif)
 
